@@ -4,9 +4,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import uitcourse.j11.nt118.appmusichtcl.Model.Playlist;
 import uitcourse.j11.nt118.appmusichtcl.R;
+import uitcourse.j11.nt118.appmusichtcl.Service.APIService;
+import uitcourse.j11.nt118.appmusichtcl.Service.Dataservice;
 
 public class DanhsachcacplaylistActivity extends AppCompatActivity {
 
@@ -18,6 +28,27 @@ public class DanhsachcacplaylistActivity extends AppCompatActivity {
         setContentView(R.layout.activity_danhsachcacplaylist);
         anhxa();
         init();
+        GetData();
+    }
+
+    // Lay danh sach cac playlist
+    private void GetData() {
+
+        Dataservice dataservice = APIService.getService();
+        Call<List<Playlist>> callback = dataservice.GetDanhSachPlayList();
+        callback.enqueue(new Callback<List<Playlist>>() {
+            @Override
+            public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
+                ArrayList<Playlist> mangplaylist = (ArrayList<Playlist>) response.body();
+                Log.d("YYY",mangplaylist.get(0).getTen());
+            }
+
+            @Override
+            public void onFailure(Call<List<Playlist>> call, Throwable t) {
+
+            }
+        });
+
     }
 
     private void init() {
