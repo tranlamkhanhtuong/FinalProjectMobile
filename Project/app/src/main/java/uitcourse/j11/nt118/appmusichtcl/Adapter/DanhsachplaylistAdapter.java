@@ -2,6 +2,7 @@ package uitcourse.j11.nt118.appmusichtcl.Adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import uitcourse.j11.nt118.appmusichtcl.Activity.DanhsachbaihatActivity;
 import uitcourse.j11.nt118.appmusichtcl.Model.Playlist;
 import uitcourse.j11.nt118.appmusichtcl.R;
 
@@ -65,6 +67,14 @@ public class DanhsachplaylistAdapter extends RecyclerView.Adapter<Danhsachplayli
 
             imghinhnen = itemView.findViewById(R.id.imageviewdanhsachcacplaylist);
             txttenplaylist = itemView.findViewById(R.id.textviewtendanhsachcacplaylist);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context,DanhsachbaihatActivity.class);
+                    intent.putExtra("itemplaylist",mangplaylist.get(getPosition()));
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 

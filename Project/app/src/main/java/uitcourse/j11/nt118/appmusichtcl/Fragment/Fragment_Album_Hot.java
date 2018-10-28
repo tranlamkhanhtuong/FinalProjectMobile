@@ -1,5 +1,6 @@
 package uitcourse.j11.nt118.appmusichtcl.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import uitcourse.j11.nt118.appmusichtcl.Activity.DanhsachtatcaAlbumActivity;
 import uitcourse.j11.nt118.appmusichtcl.Adapter.AlbumAdapter;
 import uitcourse.j11.nt118.appmusichtcl.Model.Album;
 import uitcourse.j11.nt118.appmusichtcl.R;
@@ -37,6 +39,13 @@ public class Fragment_Album_Hot extends Fragment {
         view = inflater.inflate(R.layout.fragment_album_hot,container,false);
         recyclerViewalbum = view.findViewById(R.id.recycleviewAlbum);
         txtxemthemalbum = view.findViewById(R.id.textviewxemthem);
+        txtxemthemalbum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),DanhsachtatcaAlbumActivity.class);
+                startActivity(intent);
+            }
+        });
         GetData();
         return view;
     }
