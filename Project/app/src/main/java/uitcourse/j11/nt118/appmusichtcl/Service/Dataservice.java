@@ -9,6 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import uitcourse.j11.nt118.appmusichtcl.Model.Album;
 import uitcourse.j11.nt118.appmusichtcl.Model.Baihat;
+import uitcourse.j11.nt118.appmusichtcl.Model.ChuDe;
 import uitcourse.j11.nt118.appmusichtcl.Model.ChudeTheloai;
 import uitcourse.j11.nt118.appmusichtcl.Model.Playlist;
 import uitcourse.j11.nt118.appmusichtcl.Model.Quangcao;
@@ -42,5 +43,16 @@ public interface Dataservice {
     @GET("danhsachcacplaylist.php")
     Call<List<Playlist>> GetDanhSachPlayList();
 
+    @FormUrlEncoded
+    @POST("danhsachbaihat.php")
+    Call<List<Baihat>> GetDanhsachbaihattheotheloai(@Field("idtheloai") String idtheloai);
+
+    @GET("tatcachude.php")
+    Call<List<ChuDe>> GetAllChude();
+
+
+    @FormUrlEncoded
+    @POST("theloaitheochude.php")
+    Call<List<TheLoai>> GetTheloaitheochude(@Field("idchude") String idchude);
 
 }

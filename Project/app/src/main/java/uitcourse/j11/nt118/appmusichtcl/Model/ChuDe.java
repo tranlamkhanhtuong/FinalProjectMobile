@@ -3,7 +3,9 @@ package uitcourse.j11.nt118.appmusichtcl.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ChuDe {
+import java.io.Serializable;
+
+public class ChuDe implements Serializable {
 
 @SerializedName("IdChuDe")
 @Expose
