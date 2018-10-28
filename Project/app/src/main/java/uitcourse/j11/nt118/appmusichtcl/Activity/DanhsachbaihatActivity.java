@@ -32,6 +32,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import uitcourse.j11.nt118.appmusichtcl.Adapter.DanhsachbaihatAdapter;
+import uitcourse.j11.nt118.appmusichtcl.Model.Album;
 import uitcourse.j11.nt118.appmusichtcl.Model.Baihat;
 import uitcourse.j11.nt118.appmusichtcl.Model.Playlist;
 import uitcourse.j11.nt118.appmusichtcl.Model.Quangcao;
@@ -53,6 +54,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
     DanhsachbaihatAdapter danhsachbaihatAdapter;
     Playlist playlist;
     TheLoai theLoai;
+    Album album;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,34 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             setValueInView(theLoai.getTenTheLoai(), theLoai.getHinhTheLoai());
             GetDataTheLoai(theLoai.getIdTheLoai());
         }
+        if(album != null && !album.getTenAblum().equals(""))
+        {
+            setValueInView(album.getTenAblum(), album.getHinhAlbum());
+            GetDataAlbum(album.getIdAlbum());
+        }
+
+    }
+
+    private void GetDataAlbum(String idAlbum) {
+
+        Dataservice dataservice = APIService.getService();
+        Call<List<Baihat>> callback = dataservice.GetDanhsachbaihattheoalbum(idAlbum);
+        callback.enqueue(new Callback<List<Baihat>>() {
+            @Override
+            public void onResponse(Call<List<Baihat>> call, Response<List<Baihat>> response) {
+
+                mangbaihat = (ArrayList<Baihat>) response.body();
+                Log.d("Test Bai Hat ArrayList",mangbaihat.get(0).getTenBaiHat());
+                danhsachbaihatAdapter = new DanhsachbaihatAdapter(DanhsachbaihatActivity.this,mangbaihat);
+                recyclerViewdanhsachbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
+                recyclerViewdanhsachbaihat.setAdapter(danhsachbaihatAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Baihat>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void GetDataTheLoai(String idtheloai) {
@@ -222,6 +252,11 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             if(intent.hasExtra("idtheloai"))
             {
                 theLoai = (TheLoai) intent.getSerializableExtra("idtheloai");
+            }
+
+            if(intent.hasExtra("album"))
+            {
+                album = (Album) intent.getSerializableExtra("album");
             }
         }
     }

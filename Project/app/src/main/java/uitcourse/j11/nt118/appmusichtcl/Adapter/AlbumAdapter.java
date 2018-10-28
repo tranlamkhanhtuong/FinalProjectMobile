@@ -1,6 +1,7 @@
 package uitcourse.j11.nt118.appmusichtcl.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import uitcourse.j11.nt118.appmusichtcl.Activity.DanhsachbaihatActivity;
 import uitcourse.j11.nt118.appmusichtcl.Model.Album;
 import uitcourse.j11.nt118.appmusichtcl.R;
 
@@ -59,6 +61,14 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder> 
             imghinhalbum = itemView.findViewById(R.id.imageviewalbum);
             txttenalbum = itemView.findViewById(R.id.textviewtenalbum);
             txtcasialbum = itemView.findViewById(R.id.textviewtencasialbum);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context,DanhsachbaihatActivity.class);
+                    intent.putExtra("album",mangalbum.get(getPosition()));
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

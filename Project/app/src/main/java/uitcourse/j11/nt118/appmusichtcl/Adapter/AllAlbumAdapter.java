@@ -63,14 +63,14 @@ public class AllAlbumAdapter extends RecyclerView.Adapter<AllAlbumAdapter.ViewHo
 
             imgalalbum = itemView.findViewById(R.id.imageviewallalbum);
             txttenalbum = itemView.findViewById(R.id.textviewtenallalbum);
-            /*itemView.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context,DanhsachbaihatActivity.class);
-                    intent.putExtra("itemplaylist",mangplaylist.get(getPosition()));
+                    intent.putExtra("album",albumArrayList.get(getPosition()));
                     context.startActivity(intent);
                 }
-            });*/
+            });
         }
     }
 
