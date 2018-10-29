@@ -227,6 +227,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
 
+        //Tạm thời không cho click vào floatingButton khi chưa load xong dữ liệu
         floatingActionButton.setEnabled(false);
     }
 
