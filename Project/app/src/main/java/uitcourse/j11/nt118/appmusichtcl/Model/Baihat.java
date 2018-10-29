@@ -1,9 +1,14 @@
 package uitcourse.j11.nt118.appmusichtcl.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Baihat {
+import java.io.Serializable;
+
+public class Baihat implements Parcelable {
 
 @SerializedName("IdBaiHat")
 @Expose
@@ -24,7 +29,28 @@ private String linkBaiHat;
 @Expose
 private String soLuotThich;
 
-public String getIdBaiHat() {
+    protected Baihat(Parcel in) {
+        idBaiHat = in.readString();
+        tenBaiHat = in.readString();
+        hinhBaiHat = in.readString();
+        caSi = in.readString();
+        linkBaiHat = in.readString();
+        soLuotThich = in.readString();
+    }
+
+    public static final Creator<Baihat> CREATOR = new Creator<Baihat>() {
+        @Override
+        public Baihat createFromParcel(Parcel in) {
+            return new Baihat(in);
+        }
+
+        @Override
+        public Baihat[] newArray(int size) {
+            return new Baihat[size];
+        }
+    };
+
+    public String getIdBaiHat() {
 return idBaiHat;
 }
 
@@ -72,4 +98,18 @@ public void setSoLuotThich(String soLuotThich) {
 this.soLuotThich = soLuotThich;
 }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(idBaiHat);
+        dest.writeString(tenBaiHat);
+        dest.writeString(hinhBaiHat);
+        dest.writeString(caSi);
+        dest.writeString(linkBaiHat);
+        dest.writeString(soLuotThich);
+    }
 }
